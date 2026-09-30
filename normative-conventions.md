@@ -21,7 +21,7 @@ NB: This convention is new as of 2026, and many earlier parts of the language do
 ## Use RangeError for other validity violations within an expected primitive type
 
 Where the set of valid inputs includes a strict subset of all [primitive values](https://tc39.es/ecma262/multipage/overview.html#sec-primitive-value) and an input is not in that subset but has a [language type](https://tc39.es/ecma262/multipage/ecmascript-data-types-and-values.html#sec-ecmascript-language-types) matching at least one member, the function or operation should throw a `RangeError` exception (except where `SyntaxError` is more appropriate).
-This convention applies in particular to bounded numeric intervals (e.g., numbers from 0 to 100), half-bounded numeric intervals (e.g., non-negative bigints), sparse subsets of numeric intervals (e.g., integral numbers), and string enumerations (e.g., strings in a finite enumeration).
+This convention applies in particular to bounded numeric intervals (e.g., numbers from 0 to 100), half-bounded numeric intervals (e.g., non-negative bigints), non-dense subsets of numeric intervals (e.g., integral numbers), and string enumerations (e.g., strings in a finite enumeration).
 
 Code examples subject to this convention:
 
