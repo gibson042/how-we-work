@@ -6,6 +6,32 @@ None of these rules are inviolable, but you should have a good reason for any pa
 
 This list will never cover all such conventions and is expected to grow over time.
 
+## Use SyntaxError for well-formedness violations
+
+Where the set of valid input strings is so large that it is most practically described via a grammar/pattern/etc. and the string derived from an input (which is just the input itself in the absence of coercion) does not conform with those constraints, the function or operation should throw a `SyntaxError` exception.
+
+Code examples subject to this convention:
+
+* `BigInt("@")`
+* `JSON.parse("@")`
+* `Uint8Array.fromBase64("@")`
+
+NB: This convention is new as of 2026, and many earlier parts of the language do not follow it.
+
+## Use RangeError for other validity violations within an expected language type
+
+Where the set of valid inputs is a strict subset of all values of a particular [language type](https://tc39.es/ecma262/multipage/ecmascript-data-types-and-values.html#sec-ecmascript-language-types) (or a union of language types) and an input of an acceptable type is not in that subset, the function or operation should throw a `RangeError` exception (except where `SyntaxError` is more appropriate).
+This convention applies in particular to bounded numeric intervals (e.g., numbers from 0 to 100), half-bounded numeric intervals (e.g., non-negative bigints), sparse subsets of numeric intervals (e.g., integral numbers), and string enumerations (e.g., strings in a finite enumeration).
+
+Code examples subject to this convention:
+
+* `(1).toFixed(-1)`
+* `1n ** -1n`
+* `BigInt(3.14)`
+* `"ü".normalize("custom")`
+
+NB: This convention is new as of 2026, and many earlier parts of the language do not follow it.
+
 ## Avoid coercing arguments to types other than Boolean
 
 If an argument to a built-in function is expected to be of a particular type other than Boolean, the function should throw a `TypeError` if called with a value not of that type, rather than performing coercion. This also applies to values read from options bags.
