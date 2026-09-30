@@ -8,7 +8,7 @@ This list will never cover all such conventions and is expected to grow over tim
 
 ## Use SyntaxError for well-formedness violations
 
-Where the set of valid input strings is so large that it is most practically described via a grammar/pattern/etc. and the string derived from an input (which is just the input itself in the absence of coercion) does not conform with those constraints, the function or operation should throw a `SyntaxError` exception.
+Where the set of valid input strings is most practically described via a grammar/pattern/etc. (for example, due to the size of that set or the complexity of the grammar describing it) and the string derived from an input (which is just the input itself in the absence of coercion) does not conform with those constraints, the function or operation should throw a `SyntaxError` exception.
 
 Code examples subject to this convention:
 
