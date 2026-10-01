@@ -20,7 +20,7 @@ NB: This convention is new as of 2026, and many earlier parts of the language do
 
 ## Use RangeError for validity violations within a numeric interval
 
-Where the set of valid inputs includes one or more numeric [primitive value](https://tc39.es/ecma262/multipage/overview.html#sec-primitive-value) intervals and an input is not in any of those intervals but has a [language type](https://tc39.es/ecma262/multipage/ecmascript-data-types-and-values.html#sec-ecmascript-language-types) matching at least one of them, the function or operation should throw a `RangeError` exception.
+Where the set of valid inputs includes one or more non-trivial numeric [primitive value](https://tc39.es/ecma262/multipage/overview.html#sec-primitive-value) intervals and an input is not in any valid numeric interval but has a [language type](https://tc39.es/ecma262/multipage/ecmascript-data-types-and-values.html#sec-ecmascript-language-types) matching at least one of them, the function or operation should throw a `RangeError` exception.
 This convention applies to both bounded numeric intervals (e.g., numbers from 0 to 100) and half-bounded numeric intervals (e.g., non-negative bigints).
 
 Code examples subject to this convention:
