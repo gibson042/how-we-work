@@ -8,12 +8,12 @@ This list will never cover all such conventions and is expected to grow over tim
 
 ## Use SyntaxError for well-formedness violations
 
-Where the set of valid input strings is most practically described via a grammar/pattern/etc. (for example, due to the size of that set or the complexity of the grammar describing it) and the string derived from an input (which is just the input itself in the absence of coercion) does not conform with those constraints, the function or operation should throw a `SyntaxError` exception.
+Where the set of valid input strings is most practically described via a grammar/pattern/etc. (for example, due to the size of that set or the complexity of the grammar describing it) and the string derived from an input does not conform with those constraints, the function or operation should throw a `SyntaxError` exception. Note that in addition to cases where input is already a string, the second condition also applies to cases where input is successfully coerced into a string.
 
 Code examples subject to this convention:
 
 * `BigInt("@")`
-* `JSON.parse("@")`
+* `JSON.parse({ toString: () => "@" })`
 * `Uint8Array.fromBase64("@")`
 
 NB: This convention is new as of 2026, and many earlier parts of the language do not follow it.
