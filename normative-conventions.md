@@ -29,6 +29,7 @@ Code examples subject to this convention:
 * `1n ** -1n`
 * `BigInt(3.14)`
 * `"ü".normalize("custom")`
+* `Temporal.PlainDate.from("1970-01-01", { overflow: "bad" })`
 
 NB: This convention is new as of 2026, and many earlier parts of the language do not follow it.
 
