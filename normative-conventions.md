@@ -22,10 +22,11 @@ NB: This convention is new as of 2026, and many earlier parts of the language do
 
 Where the set of valid inputs includes at least one [primitive value](https://tc39.es/ecma262/multipage/overview.html#sec-primitive-value) and an invalid input has a [language type](https://tc39.es/ecma262/multipage/ecmascript-data-types-and-values.html#sec-ecmascript-language-types) matching at least one valid primitive value, the function or operation should throw a `RangeError` exception (except where `SyntaxError` is more appropriate).
 This convention applies in particular to bounded numeric intervals (e.g., numbers from 0 to 100), half-bounded numeric intervals (e.g., non-negative bigints), non-contiguous subsets of numeric intervals (e.g., integral numbers), and string enumerations (e.g., strings in a finite enumeration).
+Note that the second condition applies after any specified input coercion.
 
 Code examples subject to this convention:
 
-* `(1).toFixed(-1)`
+* `(1).toFixed({ valueOf: () => -1 })`
 * `1n ** -1n`
 * `BigInt(3.14)`
 * `"ü".normalize("custom")`
